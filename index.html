@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Glass Rock, Paper, Scissor</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #02040a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Deep Cosmic & Ultra-Rich Aurora Background */
+        .cosmic-bg {
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.28) 0%, transparent 40%),
+                radial-gradient(circle at 85% 35%, rgba(168, 85, 247, 0.32) 0%, transparent 45%),
+                radial-gradient(circle at 50% 90%, rgba(14, 165, 233, 0.25) 0%, transparent 50%),
+                #02040a;
+        }
+
+        /* Dynamic Animated Aurora Waves */
+        .aurora-wave {
+            position: fixed;
+            bottom: -50px;
+            left: -15%;
+            right: -15%;
+            height: 260px;
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.22), rgba(168, 85, 247, 0.3), rgba(56, 189, 248, 0.22));
+            filter: blur(55px);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: pulseAurora 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseAurora {
+            0% { transform: scale(1) translateY(0) rotate(-3deg); opacity: 0.8; }
+            100% { transform: scale(1.08) translateY(-15px) rotate(2deg); opacity: 1; }
+        }
+
+        /* Advanced Liquid Glass Base with Multi-Layer Gloss & Refraction */
+        .liquid-glass {
+            position: relative;
+            background: linear-gradient(135deg, rgba(30, 48, 96, 0.52) 0%, rgba(12, 20, 45, 0.65) 100%);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            box-shadow: 
+                inset 0 2px 3px rgba(255, 255, 255, 0.85),
+                inset 0 -3px 8px rgba(139, 92, 246, 0.45),
+                inset 0 12px 15px rgba(255, 255, 255, 0.12),
+                0 10px 30px rgba(15, 23, 42, 0.6),
+                0 4px 12px rgba(99, 102, 241, 0.25);
+        }
+
+        /* Specular Refraction Top Highlights */
+        .liquid-glass::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 1.5px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Vibrant Gradient Rim Border */
+        .liquid-glass::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1.5px;
+            background: linear-gradient(135deg, rgba(224, 242, 254, 0.9) 0%, rgba(96, 165, 250, 0.5) 35%, rgba(168, 85, 247, 0.7) 75%, rgba(244, 114, 182, 0.9) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        /* Intense Glow for Main Arena Card */
+        .arena-glass {
+            box-shadow: 
+                inset 0 2.5px 4px rgba(255, 255, 255, 0.9),
+                inset 0 -4px 12px rgba(139, 92, 246, 0.6),
+                inset 0 15px 20px rgba(255, 255, 255, 0.15),
+                0 0 40px rgba(99, 102, 241, 0.42),
+                0 15px 40px rgba(139, 92, 246, 0.35);
+        }
+
+        .arena-glass::before {
+            padding: 2px;
+            background: linear-gradient(135deg, #e0f2fe 0%, #3b82f6 30%, #8b5cf6 65%, #f472b6 100%);
+        }
+
+        /* Inner Sub-Cards inside Arena */
+        .sub-glass {
+            position: relative;
+            background: linear-gradient(150deg, rgba(20, 34, 70, 0.6) 0%, rgba(8, 14, 32, 0.75) 100%);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 
+                inset 0 1.5px 2.5px rgba(255, 255, 255, 0.6),
+                inset 0 -2px 6px rgba(99, 102, 241, 0.35),
+                inset 0 8px 10px rgba(255, 255, 255, 0.08),
+                0 6px 18px rgba(0, 0, 0, 0.4);
+        }
+
+        .sub-glass::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1.2px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(96, 165, 250, 0.3), rgba(168, 85, 247, 0.5));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        /* Interactive Weapon Button Hover & Press */
+        .weapon-btn {
+            transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease;
+        }
+        .weapon-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 
+                inset 0 2.5px 4px rgba(255, 255, 255, 0.95),
+                inset 0 -3px 10px rgba(139, 92, 246, 0.7),
+                inset 0 12px 15px rgba(255, 255, 255, 0.2),
+                0 14px 35px rgba(99, 102, 241, 0.6);
+        }
+        .weapon-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Animations for Choice Reveal */
+        @keyframes popReveal {
+            0% { transform: scale(0.6) rotate(-8deg); opacity: 0.4; }
+            65% { transform: scale(1.12) rotate(3deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        .animate-reveal {
+            animation: popReveal 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        /* Glossy 3D Drop Shadow on Icons */
+        .icon-3d-shadow {
+            filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.65));
+        }
+    </style>
+</head>
+<body class="cosmic-bg min-h-screen flex flex-col items-center justify-center px-4 py-6 relative">
+
+    <!-- Ambient Bottom Aurora -->
+    <div class="aurora-wave"></div>
+
+    <!-- Centered Mobile-First Container (max-width 440px) -->
+    <main class="w-full max-w-[440px] flex flex-col gap-4 z-10">
+
+        <!-- 1. Header Glass Card -->
+        <header class="liquid-glass rounded-[26px] px-4 py-5 text-center">
+            <h1 class="text-[22px] sm:text-[25px] font-black tracking-wide uppercase bg-gradient-to-r from-[#7dd3fc] via-[#c084fc] to-[#f472b6] bg-clip-text text-transparent drop-shadow-sm">
+                ROCK • PAPER • SCISSOR
+            </h1>
+            <p class="text-xs sm:text-[13px] font-medium text-slate-200/90 mt-1.5 tracking-wide">
+                Sizer (-1) | Rock (0) | Paper (1)
+            </p>
+        </header>
+
+        <!-- 2. Scoreboard Row (3 Equal Glass Cards) -->
+        <section class="grid grid-cols-3 gap-3 text-center">
+            <!-- Player Card -->
+            <div class="liquid-glass rounded-[24px] py-3.5 px-2 flex flex-col items-center justify-center">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-200/90">PLAYER</span>
+                <span id="playerScore" class="text-3xl font-extrabold text-[#6366f1] mt-0.5 drop-shadow-[0_0_10px_rgba(99,102,241,0.5)]">0</span>
+            </div>
+            <!-- Draws Card -->
+            <div class="liquid-glass rounded-[24px] py-3.5 px-2 flex flex-col items-center justify-center">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-200/90">DRAWS</span>
+                <span id="drawScore" class="text-3xl font-extrabold text-white mt-0.5 drop-shadow-[0_0_10px_rgba(255,255,255,0.35)]">0</span>
+            </div>
+            <!-- Comp Card -->
+            <div class="liquid-glass rounded-[24px] py-3.5 px-2 flex flex-col items-center justify-center">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-200/90">COMP</span>
+                <span id="compScore" class="text-3xl font-extrabold text-[#ec4899] mt-0.5 drop-shadow-[0_0_10px_rgba(236,72,153,0.5)]">0</span>
+            </div>
+        </section>
+
+        <!-- 3. Main Battle Arena Glass Card -->
+        <section class="liquid-glass arena-glass rounded-[28px] p-5 sm:p-6 text-center">
+            <!-- Status Heading -->
+            <h2 id="resultStatus" class="text-lg sm:text-xl font-extrabold text-white mb-5 tracking-tight transition-all duration-300">
+                Make your move below! 🚀
+            </h2>
+
+            <!-- Two Inner Glass Sub-Cards Side-by-Side -->
+            <div class="grid grid-cols-2 gap-3.5">
+                <!-- Left Sub-Card: Player -->
+                <div class="sub-glass rounded-[22px] p-4 flex flex-col items-center justify-between min-h-[155px]">
+                    <span class="text-xs sm:text-[13px] font-semibold text-slate-200">You Chose</span>
+                    <div id="playerDisplayIcon" class="my-2 flex items-center justify-center h-16 w-16 icon-3d-shadow">
+                        <!-- Initial Glossy Red Question Mark SVG -->
+                        <svg class="w-14 h-14" viewBox="0 0 64 64" fill="none">
+                            <defs>
+                                <linearGradient id="redGrad1" x1="16" y1="8" x2="48" y2="56" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#ff6b6b"/>
+                                    <stop offset="50%" stop-color="#ef4444"/>
+                                    <stop offset="100%" stop-color="#991b1b"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M21 22C21 15.5 26 11 32.5 11C39 11 44 15.2 44 21.2C44 26.2 40.5 28.8 36.8 31.4C34.2 33.2 33 34.8 33 38V39.5H27.5V37.5C27.5 32.8 29.8 30.2 33.2 27.8C36 25.8 38 24.2 38 21.3C38 18.2 35.6 16.2 32.4 16.2C29 16.2 26.8 18.4 26.8 22H21ZM30.2 45C32.7 45 34.6 46.9 34.6 49.3C34.6 51.7 32.7 53.6 30.2 53.6C27.8 53.6 25.9 51.7 25.9 49.3C25.9 46.9 27.8 45 30.2 45Z" fill="url(#redGrad1)"/>
+                            <path d="M24 19C24.5 15.5 27.5 13 32 13" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <span id="playerDisplayText" class="text-sm font-bold text-slate-300 tracking-wider">---</span>
+                </div>
+
+                <!-- Right Sub-Card: Computer -->
+                <div class="sub-glass rounded-[22px] p-4 flex flex-col items-center justify-between min-h-[155px]">
+                    <span class="text-xs sm:text-[13px] font-semibold text-slate-200/80">Computer Chose</span>
+                    <div id="compDisplayIcon" class="my-2 flex items-center justify-center h-16 w-16 icon-3d-shadow">
+                        <!-- Initial Glossy Red Question Mark SVG -->
+                        <svg class="w-14 h-14" viewBox="0 0 64 64" fill="none">
+                            <defs>
+                                <linearGradient id="redGrad2" x1="16" y1="8" x2="48" y2="56" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#ff6b6b"/>
+                                    <stop offset="50%" stop-color="#ef4444"/>
+                                    <stop offset="100%" stop-color="#991b1b"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M21 22C21 15.5 26 11 32.5 11C39 11 44 15.2 44 21.2C44 26.2 40.5 28.8 36.8 31.4C34.2 33.2 33 34.8 33 38V39.5H27.5V37.5C27.5 32.8 29.8 30.2 33.2 27.8C36 25.8 38 24.2 38 21.3C38 18.2 35.6 16.2 32.4 16.2C29 16.2 26.8 18.4 26.8 22H21ZM30.2 45C32.7 45 34.6 46.9 34.6 49.3C34.6 51.7 32.7 53.6 30.2 53.6C27.8 53.6 25.9 51.7 25.9 49.3C25.9 46.9 27.8 45 30.2 45Z" fill="url(#redGrad2)"/>
+                            <path d="M24 19C24.5 15.5 27.5 13 32 13" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <span id="compDisplayText" class="text-sm font-bold text-slate-300 tracking-wider">---</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Weapon Selection Section -->
+        <section class="flex flex-col items-center mt-1">
+            <!-- Pill-Shaped Glass Badge -->
+            <div class="liquid-glass rounded-full px-6 py-1.5 mb-3.5">
+                <span class="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-100">
+                    SELECT YOUR WEAPON
+                </span>
+            </div>
+
+            <!-- 3 Interactive Glossy Glass Weapon Buttons -->
+            <div class="grid grid-cols-3 gap-3 w-full">
+                <!-- Button 1: Rock (0) -->
+                <button onclick="playRound(0)" class="liquid-glass weapon-btn rounded-[24px] py-4 px-2 flex flex-col items-center justify-center cursor-pointer focus:outline-none">
+                    <div class="w-12 h-12 flex items-center justify-center mb-1.5 icon-3d-shadow">
+                        <!-- Custom 3D Faceted Rock SVG -->
+                        <svg class="w-11 h-11" viewBox="0 0 64 64" fill="none">
+                            <polygon points="32,8 50,18 56,36 44,54 20,54 8,38 14,18" fill="#9ca3af"/>
+                            <polygon points="32,8 50,18 36,28 22,20" fill="#e5e7eb"/>
+                            <polygon points="14,18 32,8 22,20 8,38" fill="#d1d5db"/>
+                            <polygon points="50,18 56,36 42,38 36,28" fill="#6b7280"/>
+                            <polygon points="36,28 42,38 30,44 22,20" fill="#9ca3af"/>
+                            <polygon points="8,38 22,20 30,44 20,54" fill="#6b7280"/>
+                            <polygon points="30,44 42,38 56,36 44,54 20,54" fill="#4b5563"/>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-bold text-white tracking-wide">Rock</span>
+                </button>
+
+                <!-- Button 2: Paper (1) -->
+                <button onclick="playRound(1)" class="liquid-glass weapon-btn rounded-[24px] py-4 px-2 flex flex-col items-center justify-center cursor-pointer focus:outline-none">
+                    <div class="w-12 h-12 flex items-center justify-center mb-1.5 icon-3d-shadow">
+                        <!-- Custom 3D Document Page SVG -->
+                        <svg class="w-11 h-11" viewBox="0 0 64 64" fill="none">
+                            <path d="M16 10C16 8.89543 16.8954 8 18 8H38L48 18V54C48 55.1046 47.1046 56 46 56H18C16.8954 56 16 55.1046 16 54V10Z" fill="#f8fafc"/>
+                            <path d="M38 8L48 18H40C38.8954 18 38 17.1046 38 16V8Z" fill="#93c5fd"/>
+                            <rect x="22" y="24" width="20" height="3" rx="1.5" fill="#94a3b8"/>
+                            <rect x="22" y="31" width="20" height="3" rx="1.5" fill="#94a3b8"/>
+                            <rect x="22" y="38" width="20" height="3" rx="1.5" fill="#94a3b8"/>
+                            <rect x="22" y="45" width="13" height="3" rx="1.5" fill="#94a3b8"/>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-bold text-white tracking-wide">Paper</span>
+                </button>
+
+                <!-- Button 3: Scissor (-1) -->
+                <button onclick="playRound(-1)" class="liquid-glass weapon-btn rounded-[24px] py-4 px-2 flex flex-col items-center justify-center cursor-pointer focus:outline-none">
+                    <div class="w-12 h-12 flex items-center justify-center mb-1.5 icon-3d-shadow">
+                        <!-- Custom 3D Red-Handled Scissors SVG -->
+                        <svg class="w-11 h-11" viewBox="0 0 64 64" fill="none">
+                            <!-- Blades -->
+                            <path d="M32 30L46 54C47.5 55.5 49.5 54 48.5 51.5L35 27L32 30Z" fill="#cbd5e1"/>
+                            <path d="M32 30L18 54C16.5 55.5 14.5 54 15.5 51.5L29 27L32 30Z" fill="#e2e8f0"/>
+                            <!-- Pivot Screw -->
+                            <circle cx="32" cy="30" r="2.2" fill="#475569"/>
+                            <!-- Red Handles -->
+                            <circle cx="21" cy="17" r="7.5" stroke="#ef4444" stroke-width="4.5" fill="none"/>
+                            <circle cx="43" cy="17" r="7.5" stroke="#ef4444" stroke-width="4.5" fill="none"/>
+                            <path d="M25.5 23L30 29" stroke="#ef4444" stroke-width="4.5" stroke-linecap="round"/>
+                            <path d="M38.5 23L34 29" stroke="#ef4444" stroke-width="4.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-bold text-white tracking-wide">Scissor</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 5. Bottom Reset Pill Button -->
+        <div class="flex justify-center mt-2">
+            <button onclick="resetScores()" class="liquid-glass weapon-btn rounded-full px-7 py-2.5 flex items-center gap-2 text-sm font-bold text-slate-100 cursor-pointer focus:outline-none">
+                <span>Reset Scores</span>
+                <span class="inline-flex items-center justify-center w-5 h-5 rounded bg-sky-400/90 text-slate-950 text-xs font-black shadow-sm">🔁</span>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Game Logic JavaScript (Exact Match to User's Python Code) -->
+    <script>
+        let scores = {
+            player: 0,
+            draw: 0,
+            comp: 0
+        };
+
+        // Crisp 3D-style SVG Icons for Arena Display
+        const icons = {
+            question: `
+                <svg class="w-14 h-14" viewBox="0 0 64 64" fill="none">
+                    <defs>
+                        <linearGradient id="redGradDynamic" x1="16" y1="8" x2="48" y2="56" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#ff6b6b"/>
+                            <stop offset="50%" stop-color="#ef4444"/>
+                            <stop offset="100%" stop-color="#991b1b"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M21 22C21 15.5 26 11 32.5 11C39 11 44 15.2 44 21.2C44 26.2 40.5 28.8 36.8 31.4C34.2 33.2 33 34.8 33 38V39.5H27.5V37.5C27.5 32.8 29.8 30.2 33.2 27.8C36 25.8 38 24.2 38 21.3C38 18.2 35.6 16.2 32.4 16.2C29 16.2 26.8 18.4 26.8 22H21ZM30.2 45C32.7 45 34.6 46.9 34.6 49.3C34.6 51.7 32.7 53.6 30.2 53.6C27.8 53.6 25.9 51.7 25.9 49.3C25.9 46.9 27.8 45 30.2 45Z" fill="url(#redGradDynamic)"/>
+                    <path d="M24 19C24.5 15.5 27.5 13 32 13" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linecap="round"/>
+                </svg>`,
+            "0": `
+                <svg class="w-14 h-14" viewBox="0 0 64 64" fill="none">
+                    <polygon points="32,8 50,18 56,36 44,54 20,54 8,38 14,18" fill="#9ca3af"/>
+                    <polygon points="32,8 50,18 36,28 22,20" fill="#e5e7eb"/>
+                    <polygon points="14,18 32,8 22,20 8,38" fill="#d1d5db"/>
+                    <polygon points="50,18 56,36 42,38 36,28" fill="#6b7280"/>
+                    <polygon points="36,28 42,38 30,44 22,20" fill="#9ca3af"/>
+                    <polygon points="8,38 22,20 30,44 20,54" fill="#6b7280"/>
+                    <polygon points="30,44 42,38 56,36 44,54 20,54" fill="#4b5563"/>
+                </svg>`,
+            "1": `
+                <svg class="w-14 h-14" viewBox="0 0 64 64" fill="none">
+                    <path d="M16 10C16 8.89543 16.8954 8 18 8H38L48 18V54C48 55.1046 47.1046 56 46 56H18C16.8954 56 16 55.104
